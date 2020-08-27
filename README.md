@@ -22,3 +22,5 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+# ejempo_Prueba_API
+Ejemplo de uso de la API para la prueba
