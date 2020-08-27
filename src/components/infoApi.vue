@@ -20,10 +20,13 @@
         {{ item.id }} - {{item.type}} - {{item.attributes.name}}
       </div>
     </div>
-    <div v-show="traerFundamentos">
-      <div v-for="(item,index) in traerFundamentos.data" :key="index">
-        <p v-html="item.description"></p>
+    <div v-show="mostrarFundamentosData">
+      <div v-for="(item,index) in mostrarFundamentosData" :key="index">
+        {{item.id}} - {{item.type}} - {{item.attributes.cover}}
       </div>
+    </div>
+    <div v-for="(item,index) in mostrarFundamentosIncluded" :key="index">
+      {{ item.attributes.name }}
     </div>
   </div>
 </template>
@@ -45,9 +48,12 @@ export default {
     traerCursos(){
       return this.$store.getters.mostrarCursos;
     },
-    traerFundamentos(){
-      return this.$store.getters.mostrarFundamentos;
+    mostrarFundamentosData(){
+      return this.$store.getters.mostrarFundamentosData;
     },
+    mostrarFundamentosIncluded(){
+      return this.$store.getters.mostrarFundamentosIncluded;
+    }
   },
   methods: {
     userMe(){
@@ -64,7 +70,8 @@ export default {
     },
     fundamentos(){
       API('courses/fundamentos-de-desarrollo-web').then(response =>{
-        console.log(response.data);
+        console.log(response.data); //objeto
+        console.log(response.included); //arreglo
         this.$store.dispatch('guardaData3',response);
       }).catch(error => console.error(error));
     }

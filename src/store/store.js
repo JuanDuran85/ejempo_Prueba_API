@@ -7,7 +7,9 @@ export default new Vuex.Store({
   state: {
     userMe: {},
     cursos: {},
-    fundamentos: {}
+    fundamentos: {},
+    fundamentosData: [],
+    fundamentosInclude: []
   },
   getters: {
     mostrarUserMe(state){
@@ -18,7 +20,13 @@ export default new Vuex.Store({
     },
     mostrarFundamentos(state){
       return state.fundamentos;
-    }
+    },
+    mostrarFundamentosData(state){
+      return state.fundamentosData;
+    },
+    mostrarFundamentosIncluded(state){
+      return state.fundamentosInclude;
+    },
   },
   mutations: {
     userMe(state,datosRecibidos){
@@ -29,6 +37,8 @@ export default new Vuex.Store({
     },
     fundamentosWeb(state,datosRecibidos){
       state.fundamentos = datosRecibidos;
+      state.fundamentosData.push(datosRecibidos.data);
+      state.fundamentosInclude = datosRecibidos.included;
     }
   },
   actions: {
