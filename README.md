@@ -1,26 +1,19 @@
 # ejemplo_prueba_final
 
-## Project setup
+Nombre:
+Apellido:
+RUT:
+
+En este proyecto se esta utilizando Yarn. Para instalar yarn, implementar por la terminal el comando: npm i -g yarn. Para mayor información visitar: (https://yarnpkg.com/getting-started/install).
+
+El pryecto hace tal cosa...
+
+## Para instalar el proyecto o carpeta, utilizar:
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Para activar el servidor, utilizar la instrucción:
 ```
 yarn serve
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-# ejempo_Prueba_API
-Ejemplo de uso de la API para la prueba
