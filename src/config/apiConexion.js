@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export const API = async function(parametro1){
     try {
-        let base_url = `https://cors-anywhere.herokuapp.com/https://pruebafrontend.desafiolatam.com/api/v1`;
+        //https://cors-anywhere.herokuapp.com/ para problemas con cors
+        let base_url = `https://pruebafrontend.desafiolatam.com/api/v1`;
         let response = await axios.get(`${base_url}/${parametro1}`);
         console.log(response.data);
         return response.data;

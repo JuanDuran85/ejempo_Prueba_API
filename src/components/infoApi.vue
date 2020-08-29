@@ -9,7 +9,7 @@
       <a class="btn btn-primary btn-lg mx-2" href="#" role="button" @click="courses">Cursos</a>
       <a class="btn btn-primary btn-lg mx-2" href="#" role="button" @click="fundamentos">Fundamentos</a>
       <a class="btn btn-primary btn-lg mx-2" href="#" role="button">CSS</a>
-      <a class="btn btn-primary btn-lg mx-2" href="#" role="button">JavaScript</a>
+      <a class="btn btn-primary btn-lg mx-2" href="#" role="button" @click="mostrarJS">JavaScript</a>
     </div>
     <hr>
     <ul v-show="traerIncluded">
@@ -28,6 +28,25 @@
     <div v-for="(item,index) in mostrarFundamentosIncluded" :key="index">
       {{ item.attributes.name }}
     </div>
+    <div v-if="javaScriptIncluded.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Type</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in javaScriptIncluded" :key="index">
+            <td>{{item.id}}</td>
+            <td>{{item.type}}</td>
+            <td>{{item.attributes.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </template>
 
@@ -38,7 +57,7 @@ export default {
   name: 'InfoApi',
   data() {
     return {
-      
+      javaScriptIncluded: []
     }
   },
   computed: {
@@ -53,6 +72,9 @@ export default {
     },
     mostrarFundamentosIncluded(){
       return this.$store.getters.mostrarFundamentosIncluded;
+    },
+    mostrarJavaScriptInclude(){
+      return this.$store.getters.mostrarJavascriptIncluded;
     }
   },
   methods: {
@@ -65,15 +87,18 @@ export default {
     courses(){
       API('courses').then(response =>{
         console.log(response.data);
-        this.$store.dispatch('guardaData2',response);
+        this.$store.dispatch('cursosCompletos',response.data);
       }).catch(error => console.error(error));
     },
     fundamentos(){
       API('courses/fundamentos-de-desarrollo-web').then(response =>{
         console.log(response.data); //objeto
         console.log(response.included); //arreglo
-        this.$store.dispatch('guardaData3',response);
+        this.$store.dispatch('gardaDataFundamentos',response);
       }).catch(error => console.error(error));
+    },
+    mostrarJS(){
+      this.javaScriptIncluded = this.$store.state.javascriptInclude;
     }
   },
 }

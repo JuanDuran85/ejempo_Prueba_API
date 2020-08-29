@@ -9,7 +9,7 @@
 </template>
 
 <script>
-//import { API } from "./config/apiConexion";
+import { API } from "./config/apiConexion";
 //import axios from 'axios';
 
 export default {
@@ -17,6 +17,22 @@ export default {
   data() {
     return {
       apiResultado: null
+    }
+  },
+  methods: {
+    javascript(){
+      API('courses/javascript').then(response =>{
+        console.log(response.data); //objeto
+        console.log(response.included); //arreglo
+        this.$store.dispatch('guardaDataJavaScript',response);
+      }).catch(error => console.error(error));
+    },
+    cssAvanzado(){
+      API('courses/css-avanzado').then(response =>{
+        console.log(response.data); //objeto
+        console.log(response.included); //arreglo
+        this.$store.dispatch('guardaDataCSS',response);
+      }).catch(error => console.error(error));
     }
   },
   mounted(){
@@ -33,6 +49,8 @@ export default {
   .then(response => response.json())
   .then(json => console.log(json)) */
 
+  this.javascript();
+  this.cssAvanzado();
   }
 }
 </script>
